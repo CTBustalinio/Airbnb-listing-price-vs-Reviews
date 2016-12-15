@@ -1,0 +1,76 @@
+__Exploratory Data Analysis (EDA)__:
+
+- What specific munging issues do you have to address (e.g., encoding, missing data, or data to exclude)?
+    For the comments section:
+        
+        -Encoding: All data were in UTF8. However, some cells didnt have string values - only symbols and numbers.These were excluded
+        -Some comments were in other languages- not English. These were excluded
+        
+    For the listing prices:
+        
+        -Theoretical listings had prices >=8888. These were also deleted
+        
+- What descriptive/summary statistics are useful for understanding your data?
+        -Word counts and price histograms were used to show distribution
+    
+- What figures provide insight into your data?
+        -Aside from histograms, words were plotted in scatter plots of (word count and rank) to show direction- if a word has more polarity to describe a listing as expensive or cheap.
+        
+        
+__Preprocessing__: 
+
+- How did you tokenize words? Is “didn’t” one token or two? Why did you make that choice?
+    -Negation was treated as pne word for word2vec
+- Did you normalize your tokens in any way (case, stemming, lemmatization)? If so, how? Why or why not?
+    -All words were changed to lower case, as identifying descriptors were the objective
+- Does removing stop-wording or hapaxes help?
+    -Removing stop-words helped to highlight the most frequent useful words
+- Did you segment sentences? If so, why and how?
+    -Comments were segmented into sentences during word2vec, to have better word association measures
+- Explore the frequency counts. Are there any terms that should be removed from your feature set? Why or why not?
+    - 's, san, francisco should have been removed in the feature set, as they do not add context
+    
+__Vectorizing__:
+
+- How did vectorization effect the modeling step?
+    -Vectorization helped in comming up with Sentiment Analysis to be able to run classification algorithms
+- Did tf-idf have an effect? Why or why not?
+    -Tf-IDF had the same effect as the vectors
+----
+Part II Modeling 
+----
+
+Pick at least 1 type of modeling:
+
+__Classification / Sentiment Analysis__:
+
+- How noisey were the labels? How did you handle mislabeled or unlabeled data?
+    -Labels were assigned as a function of price, by room-type and neighborhood
+- How did you handle class imbalance?
+    -Different parameters were used in calculating for Precision, Recall and F1 score
+- How did Naive Bayes, Logistic Regression
+    -Logistic Regression was used with SAG parameter returned the best model.
+- What were the most common misclassifications? What are possible reasons?
+    -Misclassification was common with 'expensive' listings as they had the list count. The labels are not balanced.
+
+
+__word2vec__:
+
+- Does word2vec yield meaningful results?
+    YES. 
+- Could you make corpus specific analogies?
+    
+
+
+Extra Credit
+---
+Explore advanced options of your choosing. Suggestions:  
+
+- Did you search the hyperparameters of your models (i.e., optimization)?  
+    -Using SAG for logistic regression gave the model with highest metrics over-all
+- Did ensembling improve your model's performance?
+    -Ensembling only worked with 1300 data rows, not enough with unbalanced data
+
+- How would you turn your project in a data product?
+    -The project could help with price setting, or to indicate improvement areas for listings that would like to fetch higher prices
+
